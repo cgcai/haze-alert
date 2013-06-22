@@ -10,7 +10,7 @@ import urllib2
 _VERBOSE = False
 _APP_NAME = "hazealert"
 _HOIIO_SMS_API = "https://secure.hoiio.com/open/sms/send"
-_ALERT_MSG = "The offical 3-hourly PSI is now {psi} as of {time}. "
+_ALERT_MSG = "The official 3-hour PSI is now {psi} as of {time}. "
 _ALERT_BEGIN = "These alerts will continue until PSI falls below {threshold}. "
 _ALERT_END = "No further alerts will be sent. "
 
