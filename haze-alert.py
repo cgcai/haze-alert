@@ -61,6 +61,12 @@ def main():
 	if cur_ts == last_ts:
 		return
 
+	# If there is no current value ("null"), report the previous time/value.
+	using_last = False
+	if cur_val == None:
+		cur_ts, cur_val = last_ts, last_val
+		using_last = True
+
 	# Note: humans don't like UNIX timestamps.
 	# Note: We strip() every message to save characters.
 	human_time = datetime.fromtimestamp(cur_ts).strftime("%H:%M")
@@ -108,7 +114,9 @@ def get_scratch_info(path):
 def get_psi_info(ds):
 	base_date = ds["date"]
 	update_key = ds["last_update"]
-	current_value = float(ds["history"][unicode(update_key)])
+	current_value = ds["history"][unicode(update_key)]
+	if current_value:
+		current_value = float(current_value)
 	current_time = int(base_date) + int(update_key) * 3600
 	return (current_time, current_value)
 
